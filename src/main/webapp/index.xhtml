@@ -1,0 +1,55 @@
+<f:view xmlns="http://www.w3c.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:prime="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <title>#{menuController.title}</title>
+        <style>
+            body {font-size:12px; }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form>
+            <prime:panel header="What do you see here?" >
+                <div style="height:50px">
+                    This is a simple PrimeFaces 5 project running on Spring Boot 1.1.4.
+                </div>
+            </prime:panel>
+            <prime:panel header="JSF 2.2 Bean Access">
+                #{helloWorldBean.hello}
+            </prime:panel>
+        </h:form>
+
+
+        <prime:accordionPanel multiple="true">
+            <prime:tab title="First Tab Title">
+                <prime:outputLabel value="JournalDev - JSF2/Primefaces Tutorial"></prime:outputLabel>
+                <prime:dataTable value="#{employeesManagedBean.employees}" var="employee">
+                    <prime:column>
+                        <f:facet name="header">
+                            <h:outputText value="Employee First Name"></h:outputText>
+                        </f:facet>
+                        <h:outputText value="#{employee.firstName}"></h:outputText>
+                    </prime:column>
+                    <prime:column>
+                        <f:facet name="header">
+                            <h:outputText value="Employee Last Name"></h:outputText>
+                        </f:facet>
+                        <h:outputText value="#{employee.lastName}"></h:outputText>
+                    </prime:column>
+                </prime:dataTable>
+            </prime:tab>
+            <prime:tab title="Second Tab Title">
+                <h:outputText value="Ipsum" />
+            </prime:tab>
+            //any number of tabs
+        </prime:accordionPanel>
+
+
+
+
+
+    </h:body>
+</f:view>
