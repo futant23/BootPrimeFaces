@@ -11,14 +11,24 @@ package com.mycompany.jsfspringboot.jsf;
  */
 public class Employee {
     
+    private String id;
     private String firstName;
     private String lastName;
     
     public Employee(){}
 
-    public Employee(String firstName, String lastName) {
+    public Employee(String id, String firstName, String lastName) {
+        this.id =id;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
     
 

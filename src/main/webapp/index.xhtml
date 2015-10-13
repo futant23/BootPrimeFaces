@@ -11,45 +11,57 @@
         </style>
     </h:head>
     <h:body>
-        <h:form>
+
+        <h:form id="form">
+            <prime:growl id="msgs" showDetail="true" />
+
             <prime:panel header="What do you see here?" >
                 <div style="height:50px">
-                    This is a simple PrimeFaces 5 project running on Spring Boot 1.1.4.
+                    Employees
                 </div>
             </prime:panel>
-            <prime:panel header="JSF 2.2 Bean Access">
-                #{helloWorldBean.hello}
-            </prime:panel>
+            <prime:dataTable value="#{employeesView.employees}" var="employee" selectionMode="single" selection="#{employeesView.selectedEmployee}" rowKey="#{employee.id}">
+                <prime:ajax event="rowSelect" listener="#{employeesView.onRowSelect}"  update=":form:msgs" />
+                <prime:ajax event="rowUnselect" listener="#{employeesView.onRowUnselect}"  update=":form:msgs" />
+                <prime:column>
+                    <f:facet name="header">
+                        <h:outputText value="Employee Id"></h:outputText>
+                    </f:facet>
+                    <h:outputText value="#{employee.id}"></h:outputText>
+                </prime:column>
+                <prime:column>
+                    <f:facet name="header">
+                        <h:outputText value="Employee First Name"></h:outputText>
+                    </f:facet>
+                    <h:outputText value="#{employee.firstName}"></h:outputText>
+                </prime:column>
+                <prime:column>
+                    <f:facet name="header">
+                        <h:outputText value="Employee Last Name"></h:outputText>
+                    </f:facet>
+                    <h:outputText value="#{employee.lastName}"></h:outputText>
+                </prime:column>
+            </prime:dataTable>
+
+
+            <prime:dialog header="Employee Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <prime:outputPanel id="employeeDetail" style="text-align:center;">
+                    <prime:panelGrid  columns="2" rendered="#{not empty employeesView.selectedEmployee}" columnClasses="label,value">
+
+
+                        <h:outputText value="Id:" />
+                        <h:outputText value="#{employeesView.selectedEmployee.id}" />
+
+                        <h:outputText value="First Name" />
+                        <h:outputText value="#{employeesView.selectedEmployee.firstName}" />
+
+                        <h:outputText value="Last Name:" />
+                        <h:outputText value="#{employeesView.selectedEmployee.lastName}"/>
+
+                    </prime:panelGrid>
+                </prime:outputPanel>
+            </prime:dialog>
+
         </h:form>
-
-
-        <prime:accordionPanel multiple="true">
-            <prime:tab title="First Tab Title">
-                <prime:outputLabel value="JournalDev - JSF2/Primefaces Tutorial"></prime:outputLabel>
-                <prime:dataTable value="#{employeesManagedBean.employees}" var="employee">
-                    <prime:column>
-                        <f:facet name="header">
-                            <h:outputText value="Employee First Name"></h:outputText>
-                        </f:facet>
-                        <h:outputText value="#{employee.firstName}"></h:outputText>
-                    </prime:column>
-                    <prime:column>
-                        <f:facet name="header">
-                            <h:outputText value="Employee Last Name"></h:outputText>
-                        </f:facet>
-                        <h:outputText value="#{employee.lastName}"></h:outputText>
-                    </prime:column>
-                </prime:dataTable>
-            </prime:tab>
-            <prime:tab title="Second Tab Title">
-                <h:outputText value="Ipsum" />
-            </prime:tab>
-            //any number of tabs
-        </prime:accordionPanel>
-
-
-
-
-
     </h:body>
 </f:view>
