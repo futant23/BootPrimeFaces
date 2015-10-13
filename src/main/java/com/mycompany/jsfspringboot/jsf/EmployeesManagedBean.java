@@ -62,7 +62,7 @@ public class EmployeesManagedBean implements Serializable{
         log.debug("onRowSelect");
         Employee employee =(Employee)event.getObject();
         setSelectedEmployee(employee);
-        FacesMessage msg = new FacesMessage("Employee Selected", ((Employee) event.getObject()).getId());
+        FacesMessage msg = new FacesMessage("Employee Selected", ((Employee) event.getObject()).toString());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
  
