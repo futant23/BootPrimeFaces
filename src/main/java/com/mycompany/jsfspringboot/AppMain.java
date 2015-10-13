@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  *
- * @author b1050502
+ * 
  */
 @Configuration
 @ComponentScan(basePackages={""})

@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author b1050502
+ * @author 
  */
 @ManagedBean
 @ViewScoped

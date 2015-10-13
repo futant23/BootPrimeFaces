@@ -11,7 +11,7 @@ import javax.faces.bean.ViewScoped;
 
 /**
  *
- * @author b1050502
+ * @author 
  */
 @ManagedBean
 @ViewScoped
