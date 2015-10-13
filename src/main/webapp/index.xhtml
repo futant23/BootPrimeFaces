@@ -12,63 +12,65 @@
     </h:head>
     <h:body>
 
-        
+
         <prime:layout fullPage="true">
- 
-    <prime:layoutUnit position="north" size="100" header="Top" resizable="true" closable="true" collapsible="true">
-        <h:outputText value="North unit content." />
-    </prime:layoutUnit>
- 
-    <prime:layoutUnit position="south" size="100" header="Bottom" resizable="true" closable="true" collapsible="true">
-        <h:outputText value="South unit content." />
-    </prime:layoutUnit>
- 
-    <prime:layoutUnit position="west" size="200" header="Left" resizable="true" closable="true" collapsible="true">
-        <h:outputText value="West unit content." />
-    </prime:layoutUnit>
- 
-    <prime:layoutUnit position="east" size="200" header="Right" resizable="true" closable="true" collapsible="true" effect="drop">
-        <h:outputText value="Right unit content." />
-    </prime:layoutUnit>
- 
-    <prime:layoutUnit position="center">
-         <h:form id="form">
-            <prime:growl id="msgs" showDetail="true" />
 
-            <f:facet name="header">
-                 List of Employees
-               </f:facet>
-            <prime:dataTable value="#{employeesView.employees}" var="employee" selectionMode="single" selection="#{employeesView.selectedEmployee}" rowKey="#{employee.id}">
-                <prime:ajax event="rowSelect" listener="#{employeesView.onRowSelect}"  update=":form:msgs" />
-                <prime:ajax event="rowUnselect" listener="#{employeesView.onRowUnselect}"  update=":form:msgs" />
-                <prime:column>
-                    <f:facet name="header">
-                        <h:outputText value="Employee Id"></h:outputText>
-                    </f:facet>
-                    <h:outputText value="#{employee.id}"></h:outputText>
-                </prime:column>
-                <prime:column>
-                    <f:facet name="header">
-                        <h:outputText value="Employee First Name"></h:outputText>
-                    </f:facet>
-                    <h:outputText value="#{employee.firstName}"></h:outputText>
-                </prime:column>
-                <prime:column>
-                    <f:facet name="header">
-                        <h:outputText value="Employee Last Name"></h:outputText>
-                    </f:facet>
-                    <h:outputText value="#{employee.lastName}"></h:outputText>
-                </prime:column>
+            <prime:layoutUnit position="north" size="100" header="Top" resizable="true" closable="true" collapsible="true">
+                <h:outputText value="North unit content." />
+            </prime:layoutUnit>
 
-            </prime:dataTable>
-        </h:form>
-        
-    </prime:layoutUnit>
- 
-</prime:layout>
-        
-        
-        
-       
+            <prime:layoutUnit position="south" size="100" header="Bottom" resizable="true" closable="true" collapsible="true">
+                <h:outputText value="South unit content." />
+            </prime:layoutUnit>
+
+            <prime:layoutUnit position="west" size="200" header="Left" resizable="true" closable="true" collapsible="true">
+                <h:outputText value="West unit content." />
+            </prime:layoutUnit>
+
+            <prime:layoutUnit position="east" size="200" header="Right" resizable="true" closable="true" collapsible="true" effect="drop">
+                <h:outputText value="Right unit content." />
+            </prime:layoutUnit>
+
+            <prime:layoutUnit position="center">
+                <h:form id="form">
+                    <prime:growl id="msgs" showDetail="true" />
+
+                    <f:facet name="header">
+                        List of Employees
+                    </f:facet>
+                    <prime:dataTable value="#{employeesView.employees}" var="employee" selectionMode="single" 
+                                     selection="#{employeesView.selectedEmployee}" rowKey="#{employee.id}">
+
+                        <prime:ajax event="rowSelect" listener="#{employeesView.onRowSelect}"  update=":form:msgs" />
+                        <prime:ajax event="rowUnselect" listener="#{employeesView.onRowUnselect}"  update=":form:msgs" />
+                        <prime:column>
+                            <f:facet name="header">
+                                <h:outputText value="Employee Id"></h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{employee.id}"></h:outputText>
+                        </prime:column>
+                        <prime:column>
+                            <f:facet name="header">
+                                <h:outputText value="Employee First Name"></h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{employee.firstName}"></h:outputText>
+                        </prime:column>
+                        <prime:column>
+                            <f:facet name="header">
+                                <h:outputText value="Employee Last Name"></h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{employee.lastName}"></h:outputText>
+                        </prime:column>
+
+                    </prime:dataTable>
+                </h:form>
+
+            </prime:layoutUnit>
+
+        </prime:layout>
+
+
+
+
     </h:body>
 </f:view>

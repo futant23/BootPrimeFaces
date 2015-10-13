@@ -6,17 +6,20 @@
 package com.mycompany.jsfspringboot;
 
 import javax.faces.webapp.FacesServlet;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.servlet.ServletContext;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.embedded.ServletListenerRegistrationBean;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
-import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.context.ServletContextAware;
 
+import com.sun.faces.config.ConfigureListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 /**
  *
  * 
@@ -24,7 +27,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan(basePackages={""})
 @EnableAutoConfiguration
-public class AppMain extends SpringBootServletInitializer{
+public class AppMain implements ServletContextAware{
     
     private final static Logger log =LoggerFactory.getLogger(AppMain.class);
     
@@ -33,16 +36,22 @@ public class AppMain extends SpringBootServletInitializer{
         SpringApplication.run(AppMain.class, args);
     }
     
-   @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(new Class[] { AppMain.class, Initializer.class});
-    }
-    
     @Bean
-    public ServletRegistrationBean servletRegistrationBean() {
-        log.info("servletRegistrationBean()");
-        FacesServlet servlet = new FacesServlet();
-        ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(servlet, "*.jsf");
-		return servletRegistrationBean;
+    public ServletRegistrationBean facesServletRegistration() {
+        ServletRegistrationBean registration = new ServletRegistrationBean(
+            new FacesServlet(), "*.jsf");
+        registration.setLoadOnStartup(1);
+        return registration;
+    }
+
+    @Bean
+    public ServletListenerRegistrationBean<ConfigureListener> jsfConfigureListener() {
+        return new ServletListenerRegistrationBean<ConfigureListener>(
+            new ConfigureListener());
+    }
+
+    @Override
+    public void setServletContext(ServletContext servletContext) {
+        servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());       
     }
 }
