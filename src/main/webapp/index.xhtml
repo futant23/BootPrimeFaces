@@ -14,8 +14,14 @@
         </style>
     </h:head>
     <h:body>
-        <h:body>
-		<h:form>
+       
+
+
+        <prime:layout fullPage="true">
+
+            <prime:layoutUnit position="north" size="100" header="Top" resizable="true" closable="true" collapsible="true">
+                <h:outputText value="North unit content." />
+                <h:form>
 			<prime:panel header="What do you see here?" >
 				<div style="height:50px">
 					This is a simple PrimeFaces 5 project running on Spring Boot 1.1.4.
@@ -25,13 +31,6 @@
 				#{helloWorldBean.hello}
 			</prime:panel>
 		</h:form>
-	</h:body>
-
-
-        <prime:layout fullPage="true">
-
-            <prime:layoutUnit position="north" size="100" header="Top" resizable="true" closable="true" collapsible="true">
-                <h:outputText value="North unit content." />
             </prime:layoutUnit>
 
             <prime:layoutUnit position="south" size="100" header="Bottom" resizable="true" closable="true" collapsible="true">
