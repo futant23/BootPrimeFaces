@@ -5,25 +5,27 @@
  */
 package com.mycompany.jsfspringboot.jsf;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author 
  */
-@ManagedBean(value = "employeesView")
-@ViewScoped
+//@ManagedBean(value = "employeesView")
+//@ViewScoped
+@Component(value = "employeesView")
+@Scope(proxyMode=ScopedProxyMode.TARGET_CLASS, value="session")
 public class EmployeesManagedBean {
     
     private static final Logger log =LoggerFactory.getLogger(EmployeesManagedBean.class);

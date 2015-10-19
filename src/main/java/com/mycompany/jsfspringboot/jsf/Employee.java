@@ -5,11 +5,13 @@
  */
 package com.mycompany.jsfspringboot.jsf;
 
+import java.io.Serializable;
+
 /**
  *
  * @author 
  */
-public class Employee {
+public class Employee implements Serializable{
     
     private String id;
     private String firstName;
