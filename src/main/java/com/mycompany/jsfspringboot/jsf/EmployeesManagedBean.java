@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
  */
 @ManagedBean(value = "employeesView")
 @ViewScoped
-public class EmployeesManagedBean implements Serializable{
+public class EmployeesManagedBean {
     
     private static final Logger log =LoggerFactory.getLogger(EmployeesManagedBean.class);
     
