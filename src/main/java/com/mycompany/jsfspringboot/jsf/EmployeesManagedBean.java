@@ -8,9 +8,9 @@ package com.mycompany.jsfspringboot.jsf;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.SelectEvent;
@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author 
  */
-@ManagedBean (name = "employeesView")
+@ManagedBean(value = "employeesView")
 @ViewScoped
 public class EmployeesManagedBean implements Serializable{
     
