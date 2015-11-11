@@ -6,12 +6,19 @@
 package com.mycompany.jsfspringboot.jsf;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
+import org.primefaces.push.EventBus;
+import org.primefaces.push.EventBusFactory;
+import org.primefaces.push.annotation.OnMessage;
+import org.primefaces.push.annotation.PushEndpoint;
+import org.primefaces.push.annotation.Singleton;
+import org.primefaces.push.impl.JSONEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
@@ -33,7 +40,7 @@ public class EmployeesManagedBean {
     private List<Employee> employees =new ArrayList<>();
     
     private Employee selectedEmployee;
-
+    
     @PostConstruct
     public void init() {
         for(int i =0; i<10; i++) {
@@ -66,11 +73,13 @@ public class EmployeesManagedBean {
         setSelectedEmployee(employee);
         FacesMessage msg = new FacesMessage("Employee Selected", ((Employee) event.getObject()).toString());
         FacesContext.getCurrentInstance().addMessage(null, msg);
+        
+      
     }
  
     public void onRowUnselect(UnselectEvent event) {
 //        FacesMessage msg = new FacesMessage("Car Unselected", ((Car) event.getObject()).getId());
 //        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-    
+   
 }

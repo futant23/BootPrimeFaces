@@ -40,4 +40,6 @@ public class AppMain extends SpringBootServletInitializer {
         ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(servlet, "*.jsf");
         return servletRegistrationBean;
     }
+    
+
 }
